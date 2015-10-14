@@ -45,8 +45,7 @@
 
 -define(SERVER, ?MODULE).
 
--record(state, { btrees = dict:new() % Map from a name to its tree
-               }).
+-record(state, { btrees = dict:new() :: dict:dict() }).
 
 %%%===================================================================
 
