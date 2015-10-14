@@ -335,10 +335,10 @@ test_tree() ->
     hanoidb:delete(Tree, <<1500:128>>),
 %    io:format(user, "DELETE DONE 3~n", []),
 
-    {Time1,{ok,Count1}} = timer:tc(?MODULE, run_fold, [Tree,1000,2000,9]),
+    {_Time1,{ok,_Count1}} = timer:tc(?MODULE, run_fold, [Tree,1000,2000,9]),
 %    error_logger:info_msg("time to fold: ~p/sec (time=~p, count=~p)~n", [1000000/(Time1/Count1), Time1/1000000, Count1]),
 
-    {Time2,{ok,Count2}} = timer:tc(?MODULE, run_fold, [Tree,1000,2000,1000]),
+    {_Time2,{ok,_Count2}} = timer:tc(?MODULE, run_fold, [Tree,1000,2000,1000]),
 %    error_logger:info_msg("time to fold: ~p/sec (time=~p, count=~p)~n", [1000000/(Time2/Count2), Time2/1000000, Count2]),
     ok = hanoidb:close(Tree).
 

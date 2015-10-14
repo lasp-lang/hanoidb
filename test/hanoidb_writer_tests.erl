@@ -99,7 +99,7 @@ simple1_test() ->
 
     Max = Count-1,
 
-    {Time3,{done,Count2}} = timer:tc(
+    {_Time3,{done,Count2}} = timer:tc(
                       fun() -> hanoidb_reader:range_fold(fun(_Key, <<"valuevalue/", N:128>>, N) ->
 %                                                                 io:format("[~p]~n", N),
                                                                N+1
