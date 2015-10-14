@@ -51,9 +51,23 @@
 -include_lib("kernel/include/file.hrl").
 
 -record(state, {
-          a, b, c, next, dir, level, inject_done_ref, merge_pid, folding = [],
-          step_next_ref, step_caller, step_merge_ref,
-          opts = [], owner, work_in_progress=0, work_done=0, max_level=?TOP_LEVEL
+          a :: term(),
+          b :: term(),
+          c :: term(),
+          next :: term(),
+          dir :: term(),
+          level :: term(),
+          inject_done_ref :: reference(),
+          merge_pid :: pid(),
+          folding = [] :: [],
+          step_next_ref :: reference(),
+          step_caller :: pid(),
+          step_merge_ref :: reference(),
+          opts = [] :: [config_option()],
+          owner :: pid(),
+          work_in_progress = 0 :: non_neg_integer(),
+          work_done = 0 :: non_neg_integer(),
+          max_level = ?TOP_LEVEL :: non_neg_integer()
           }).
 
 

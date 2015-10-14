@@ -43,3 +43,14 @@
                        to_key                :: binary() | undefined,
                        to_inclusive = false  :: boolean(),
                        limit                 :: pos_integer() | undefined }).
+
+-type config_option() :: {compress, none | gzip | snappy | lz4}
+                       | {page_size, pos_integer()}
+                       | {read_buffer_size, pos_integer()}
+                       | {write_buffer_size, pos_integer()}
+                       | {merge_strategy, fast | predictable }
+                       | {sync_strategy, none | sync | {seconds, pos_integer()}}
+                       | {expiry_secs, non_neg_integer()}
+                       | {spawn_opt, list()}
+                       | {top_level, pos_integer()}
+                       .
