@@ -247,9 +247,9 @@ time_reads(B, Size, ReadKeys) ->
               Timings =
                   lists:map(
                     fun (_) ->
-                            StartTime = now(),
+                            StartTime = time_compat:timestamp(),
                             find_many(B, ReadKeys),
-                            timer:now_diff(now(), StartTime)
+                            timer:now_diff(time_compat:timestamp(), StartTime)
                     end, lists:seq(1, Runs)),
 
               Rps = 1000000 / ((lists:sum(Timings) / length(Timings)) / 1000),
