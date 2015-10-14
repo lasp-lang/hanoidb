@@ -195,7 +195,7 @@ initialize2(State) ->
 
             case file:read_file_info(CFileName) of
                 {ok, _} ->
-                    file:rename(CFileName, BFileName),
+                    ok = file:rename(CFileName, BFileName),
                     {ok, IXB} = hanoidb_reader:open(BFileName, [random|State#state.opts]),
                     check_begin_merge_then_loop0(init_state(State#state{ a= IXA, b=IXB }));
 
