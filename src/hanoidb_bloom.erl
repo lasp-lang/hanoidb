@@ -41,6 +41,7 @@
 
 -define(W, 27).
 
+-type array() :: array:array().
 -type bitmask() :: array() | any().
 
 -record(bloom, {
