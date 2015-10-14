@@ -4,3 +4,5 @@ deps
 .eunit
 .project
 .rebar
+.combo_dialyzer_plt
+.local_dialyzer_plt

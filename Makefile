@@ -1,6 +1,5 @@
-REBAR=		rebar
+REBAR = $(shell pwd)/rebar
 DIALYZER=	dialyzer
-
 
 .PHONY: plt analyze all deps compile get-deps clean
 
@@ -9,18 +8,21 @@ all: get-deps compile
 deps: get-deps compile
 
 get-deps:
-	@$(REBAR) get-deps
+	$(REBAR) get-deps
 
 compile:
-	@$(REBAR) compile
+	$(REBAR) compile
 
 clean:
-	@$(REBAR) clean
+	$(REBAR) clean
+
+distclean: clean
+	$(REBAR) delete-deps
 
 test: eunit
 
 eunit: compile clean-test-btrees
-	@$(REBAR) eunit skip_deps=true
+	$(REBAR) eunit skip_deps=true
 
 eunit_console:
 	erl -pa .eunit deps/*/ebin
@@ -54,3 +56,11 @@ analyze-nospec: compile
 
 repl:
 	erl -pz deps/*/ebin -pa ebin
+
+DIALYZER_APPS = kernel stdlib sasl erts ssl tools os_mon runtime_tools crypto inets \
+	xmerl webtool eunit syntax_tools compiler mnesia public_key snmp
+
+include tools.mk
+
+typer:
+	typer --annotate -I ../ --plt $(PLT) -r src
