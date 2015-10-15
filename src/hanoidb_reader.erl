@@ -319,7 +319,7 @@ decode_member_list(BinDict) when is_binary(BinDict) ->
 close(#index{file=undefined}) ->
     ok;
 close(#index{file=File}) ->
-    file:close(File).
+    ok = file:close(File).
 
 
 lookup(#index{file=File, root=Node, bloom=Bloom}, Key) ->
