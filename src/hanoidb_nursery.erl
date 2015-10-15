@@ -218,7 +218,7 @@ finish(#nursery{ dir=Dir, cache=Cache, log_file=LogFile, merge_done=DoneMerge,
 
     %% then, delete the log file
     LogFileName = filename:join(Dir, "nursery.log"),
-    file:delete(LogFileName),
+    ok = file:delete(LogFileName),
     ok.
 
 destroy(#nursery{ dir=Dir, log_file=LogFile }) ->
@@ -230,7 +230,7 @@ destroy(#nursery{ dir=Dir, log_file=LogFile }) ->
     end,
     %% then delete it
     LogFileName = filename:join(Dir, "nursery.log"),
-    file:delete(LogFileName),
+    ok = file:delete(LogFileName),
     ok.
 
 -spec add(key(), value(), #nursery{}, pid()) -> {ok, #nursery{}}.
