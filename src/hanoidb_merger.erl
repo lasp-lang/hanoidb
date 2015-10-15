@@ -166,7 +166,7 @@ receive_scan(IXA, IXB, Out, IsLastLevel, AKVs, BKVs, {N, FromPID}) ->
 
 
 scan(IXA, IXB, Out, IsLastLevel, AKVs, BKVs, {N, FromPID}) when N < 1, AKVs =/= [], BKVs =/= [] ->
-    case FromPID of
+    _ = case FromPID of
         none ->
             ok;
         {PID, Ref} ->
@@ -237,7 +237,7 @@ receive_scan_only(IX, Out, IsLastLevel, KVs, {N, FromPID}) ->
 
 
 scan_only(IX, Out, IsLastLevel, KVs, {N, FromPID}) when N < 1, KVs =/= [] ->
-    case FromPID of
+    _ = case FromPID of
         none ->
             ok;
         {PID, Ref} ->
@@ -251,7 +251,7 @@ scan_only(IX, Out, IsLastLevel, [], {_, FromPID}=Step) ->
         {kvlist, KVs} ->
             scan_only(IX, Out, IsLastLevel, KVs, Step);
         end_of_data ->
-            case FromPID of
+            _ = case FromPID of
                 none ->
                     ok;
                 {PID, Ref} ->
