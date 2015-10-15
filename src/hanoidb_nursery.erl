@@ -47,8 +47,6 @@ new(Directory, MinLevel, MaxLevel, Config) ->
                             [raw, exclusive, write, delayed_write, append]),
     {ok, #nursery{ log_file=File, dir=Directory, cache= gb_trees:empty(),
                    min_level=MinLevel, max_level=MaxLevel, config=Config }}.
-
-
 recover(Directory, TopLevel, MinLevel, MaxLevel, Config)
   when MinLevel =< MaxLevel, is_integer(MinLevel), is_integer(MaxLevel) ->
     hanoidb_util:ensure_expiry(Config),
@@ -313,7 +311,7 @@ do_inc_merge(Nursery=#nursery{ step=Step, merge_done=Done, min_level=MinLevel },
 do_level_fold(#nursery{cache=Cache}, FoldWorkerPID, KeyRange) ->
     Ref = erlang:make_ref(),
     FoldWorkerPID ! {prefix, [Ref]},
-    case gb_trees_ext:fold(
+    _ = case gb_trees_ext:fold(
            fun(_, _, {LastKey, limit}) ->
                    {LastKey, limit};
               (Key, Value, {LastKey, Count}) ->
