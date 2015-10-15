@@ -189,7 +189,7 @@ finish(#nursery{ dir=Dir, cache=Cache, log_file=LogFile, merge_done=DoneMerge,
             {ok, BT} = hanoidb_writer:open(BTreeFileName, [{size, ?BTREE_SIZE(MinLevel)},
                                                            {compress, none} | Config]),
             try
-                ok = gb_trees_ext:fold(fun(Key, Value, Acc) ->
+                ok = gb_trees_ext:foldl(fun(Key, Value, Acc) ->
                                                ok = hanoidb_writer:add(BT, Key, Value),
                                                Acc
                                        end, ok, Cache)
@@ -311,7 +311,7 @@ do_inc_merge(Nursery=#nursery{ step=Step, merge_done=Done, min_level=MinLevel },
 do_level_fold(#nursery{cache=Cache}, FoldWorkerPID, KeyRange) ->
     Ref = erlang:make_ref(),
     FoldWorkerPID ! {prefix, [Ref]},
-    _ = case gb_trees_ext:fold(
+    _ = case gb_trees_ext:foldl(
            fun(_, _, {LastKey, limit}) ->
                    {LastKey, limit};
               (Key, Value, {LastKey, Count}) ->
