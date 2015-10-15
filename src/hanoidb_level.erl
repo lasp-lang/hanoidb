@@ -201,8 +201,8 @@ initialize2(State) ->
             %% a merge completed, resulting in a file that needs to
             %% stay at the *same* level because the resulting size
             %% is smaller than or equal to this level's files.
-            file:delete(AFileName),
-            file:delete(BFileName),
+            ok = file:delete(AFileName),
+            ok = file:delete(BFileName),
             ok = file:rename(MFileName, AFileName),
 
             {ok, IXA} = hanoidb_reader:open(AFileName, [random|State#state.opts]),
