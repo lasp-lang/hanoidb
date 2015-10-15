@@ -791,7 +791,7 @@ stop_if_defined(MergePid) when is_pid(MergePid) ->
 restart_merge_then_loop(State, Reason) ->
     XFileName = filename("X",State),
     error_logger:warning_msg("Merger appears to have failed (reason: ~p). Removing outfile ~s\n", [Reason, XFileName]),
-    file:delete(XFileName),
+    ok = file:delete(XFileName),
     check_begin_merge_then_loop(State).
 
 begin_merge(State) ->
