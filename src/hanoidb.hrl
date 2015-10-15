@@ -53,7 +53,7 @@
                    cache :: gb_trees:tree(binary(), binary()),
                    total_size=0 :: integer(),
                    count=0 :: integer(),
-                   last_sync=erlang:timestamp() :: erlang:timestamp(),
+                   last_sync=time_compat:timestamp() :: erlang:timestamp(),
                    min_level :: integer(),
                    max_level :: integer(),
                    config=[] :: [{atom(), term()}],
