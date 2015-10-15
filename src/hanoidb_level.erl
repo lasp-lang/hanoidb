@@ -187,12 +187,12 @@ initialize2(State) ->
     MFileName = filename("M",State),
 
     %% remove old merge file
-    file:delete(filename("X",State)),
+    _ = file:delete(filename("X",State)),
 
     %% remove old fold files (hard links to A/B/C used during fold)
-    file:delete(filename("AF",State)),
-    file:delete(filename("BF",State)),
-    file:delete(filename("CF",State)),
+    _ = file:delete(filename("AF",State)),
+    _ = file:delete(filename("BF",State)),
+    _ = file:delete(filename("CF",State)),
 
     case file:read_file_info(MFileName) of
         {ok, _} ->
