@@ -284,7 +284,7 @@ main_loop(State = #state{ next=Next }) ->
     Parent = plain_fsm:info(parent),
     receive
         ?CALL(From, {lookup, Key})=Req ->
-            case do_lookup(Key, [State#state.c, State#state.b, State#state.a, Next]) of
+            _ = case do_lookup(Key, [State#state.c, State#state.b, State#state.a, Next]) of
                 not_found ->
                     plain_rpc:send_reply(From, not_found);
                 {found, Result} ->
@@ -295,7 +295,7 @@ main_loop(State = #state{ next=Next }) ->
             main_loop(State);
 
         ?CAST(_From, {lookup, Key, ReplyFun})=Req ->
-            case do_lookup(Key, [State#state.c, State#state.b, State#state.a, Next]) of
+            _ = case do_lookup(Key, [State#state.c, State#state.b, State#state.a, Next]) of
                 not_found ->
                     ReplyFun(not_found);
                 {found, Result} ->
@@ -345,7 +345,7 @@ main_loop(State = #state{ next=Next }) ->
 
         %% propagate knowledge of new max level
         ?CAST(_From, {set_max_level, Max}) ->
-            if Next =/= undefined ->
+            _ = if Next =/= undefined ->
                     set_max_level(Next, Max);
                true ->
                     ok
@@ -445,9 +445,9 @@ main_loop(State = #state{ next=Next }) ->
             {ok, closing};
 
         ?CALL(From, destroy) ->
-            destroy_if_defined(State#state.a),
-            destroy_if_defined(State#state.b),
-            destroy_if_defined(State#state.c),
+            _ = destroy_if_defined(State#state.a),
+            _ = destroy_if_defined(State#state.b),
+            _ = destroy_if_defined(State#state.c),
             [stop_if_defined(PID) || PID <- [State#state.merge_pid | State#state.folding]],
 
             %% this is synchronous all the way down, because our
@@ -801,7 +801,7 @@ begin_merge(State) ->
 
     ?log("starting merge~n", []),
 
-    file:delete(XFileName),
+    _ = file:delete(XFileName),
 
     MergePID = hanoidb_merger:start(AFileName, BFileName, XFileName,
         ?BTREE_SIZE(State#state.level + 1),
