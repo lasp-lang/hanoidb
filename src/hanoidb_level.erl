@@ -496,7 +496,7 @@ main_loop(State = #state{ next=Next }) ->
                     {[PIDA,PIDB,PIDC|List], [PIDC,PIDB,PIDA]}
             end,
 
-            case Next of
+            _ = case Next of
                 undefined ->
                     plain_rpc:send_reply(From, {ok, lists:reverse(NextList)});
                 _ ->
@@ -544,7 +544,7 @@ main_loop(State = #state{ next=Next }) ->
                         [ARef,BRef,CRef|List]
                 end,
 
-            case Next of
+            _ = case Next of
                 undefined ->
                     plain_rpc:send_reply(From, {ok, lists:reverse(RefList)});
                 _ ->
