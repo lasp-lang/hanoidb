@@ -32,8 +32,6 @@
 -include("hanoidb.hrl").
 -include_lib("kernel/include/file.hrl").
 
--spec new(string(), integer(), integer(), [_]) -> {ok, #nursery{}} | {error, term()}.
-
 -define(LOGFILENAME(Dir), filename:join(Dir, "nursery.log")).
 
 %% do incremental merge every this many inserts
@@ -41,6 +39,7 @@
 %% 2^TOP_LEVEL == ?BTREE_SIZE(?TOP_LEVEL)
 -define(INC_MERGE_STEP, ?BTREE_SIZE(MinLevel) div 2).
 
+-spec new(string(), integer(), integer(), [_]) -> {ok, #nursery{}}.
 new(Directory, MinLevel, MaxLevel, Config) ->
     hanoidb_util:ensure_expiry(Config),
 
