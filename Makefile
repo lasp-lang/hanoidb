@@ -1,16 +1,14 @@
 REBAR = $(shell pwd)/rebar
 DIALYZER=	dialyzer
 
-.PHONY: plt analyze all deps compile get-deps clean
+.PHONY: plt analyze all deps compile get-deps clean test
 
-all: get-deps compile
+all: deps compile
 
-deps: get-deps compile
-
-get-deps:
+deps:
 	$(REBAR) get-deps
 
-compile:
+compile: deps
 	$(REBAR) compile
 
 clean:
@@ -19,7 +17,7 @@ clean:
 distclean: clean
 	$(REBAR) delete-deps
 
-test: eunit
+test: deps eunit
 
 eunit: compile clean-test-btrees
 	$(REBAR) eunit skip_deps=true
