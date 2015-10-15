@@ -217,7 +217,6 @@ bitmask_get(I, BM) ->
         dense_bitmap     -> hanoidb_dense_bitmap:member(I, BM)
     end.
 
--spec as_array(bitmask()) -> array().
 as_array(BM) ->
     case array:is_array(BM) of
         true -> BM
