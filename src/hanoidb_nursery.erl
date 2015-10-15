@@ -141,12 +141,12 @@ do_sync(File, Nursery) ->
     LastSync =
         case application:get_env(hanoidb, sync_strategy) of
             {ok, sync} ->
-                file:datasync(File),
+                ok = file:datasync(File),
                 os:timestamp();
             {ok, {seconds, N}} ->
                 MicrosSinceLastSync = timer:now_diff(os:timestamp(), Nursery#nursery.last_sync),
                 if (MicrosSinceLastSync div 1000000) >= N ->
-                        file:datasync(File),
+                        ok = file:datasync(File),
                         os:timestamp();
                    true ->
                         Nursery#nursery.last_sync
