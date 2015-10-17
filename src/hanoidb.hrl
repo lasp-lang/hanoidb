@@ -48,9 +48,15 @@
 -define(KEY_IN_RANGE(Key,Range),
         (?KEY_IN_FROM_RANGE(Key,Range) andalso ?KEY_IN_TO_RANGE(Key,Range))).
 
+-ifdef(namespaced_types).
+-type cache() :: gb_trees:tree(binary(), binary()).
+-else.
+-type cache() :: gb_tree().
+-endif.
+
 -record(nursery, { log_file :: file:fd(),
                    dir :: string(),
-                   cache :: gb_trees:tree(binary(), binary()),
+                   cache :: cache(),
                    total_size=0 :: integer(),
                    count=0 :: integer(),
                    last_sync=time_compat:timestamp() :: erlang:timestamp(),

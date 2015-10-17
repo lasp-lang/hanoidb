@@ -40,7 +40,13 @@
 -include_lib("eunit/include/eunit.hrl").
 -endif.
 
--spec from_gb_tree(gb_trees:tree()) -> bindict().
+-ifdef(namespaced_types).
+-type tree() :: gb_trees:tree().
+-else.
+-type tree() :: gb_tree().
+-endif.
+
+-spec from_gb_tree(tree()) -> bindict().
 from_gb_tree({Count,Node}) when Count =< 16#ffffffff ->
     {_BinSize,IOList} = encode_gb_node(Node),
     erlang:iolist_to_binary([ <<?MAGIC,  Count:32/unsigned >> | IOList ]).
