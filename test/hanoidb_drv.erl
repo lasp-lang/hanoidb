@@ -25,6 +25,8 @@
 %% @doc Drive a set of LSM BTrees
 -module(hanoidb_drv).
 
+-include("include/hanoidb.hrl").
+
 -behaviour(gen_server).
 
 %% API
@@ -45,7 +47,7 @@
 
 -define(SERVER, ?MODULE).
 
--record(state, { btrees = dict:new() :: dict:dict() }).
+-record(state, { btrees = dict:new() :: hanoi_dict() }).
 
 %%%===================================================================
 
