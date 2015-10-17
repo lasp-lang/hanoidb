@@ -1,30 +1,28 @@
   Checking whether the PLT /Users/cmeiklejohn/hanoidb/.combo_dialyzer_plt is up-to-date... yes
   Checking whether the PLT /Users/cmeiklejohn/hanoidb/.local_dialyzer_plt is up-to-date... yes
   Proceeding with analysis...
-hanoidb_bloom.erl:195: The call hanoidb_bloom:bitarray_set(I::non_neg_integer(),tuple()) does not have an opaque term of type array:array(_) as 2nd argument
-hanoidb_bloom.erl:214: The call hanoidb_bloom:bitarray_get(I::non_neg_integer(),tuple()) does not have an opaque term of type array:array(_) as 2nd argument
-hanoidb_bloom.erl:228: Invalid type specification for function hanoidb_bloom:bitarray_set/2. The success typing is (integer(),tuple()) -> array:array(_)
-hanoidb_bloom.erl:229: Function bitarray_set/2 has no local return
-hanoidb_bloom.erl:232: The call array:get(AI::non_neg_integer(),A::tuple()) does not have an opaque term of type array:array(_) as 2nd argument
-hanoidb_bloom.erl:239: Function bitarray_get/2 has no local return
-hanoidb_bloom.erl:241: The call array:get(AI::non_neg_integer(),A::tuple()) does not have an opaque term of type array:array(_) as 2nd argument
+hanoidb_bloom.erl:196: The call hanoidb_bloom:bitarray_set(I::non_neg_integer(),tuple()) does not have an opaque term of type array:array(_) as 2nd argument
+hanoidb_bloom.erl:215: The call hanoidb_bloom:bitarray_get(I::non_neg_integer(),tuple()) does not have an opaque term of type array:array(_) as 2nd argument
+hanoidb_bloom.erl:229: Invalid type specification for function hanoidb_bloom:bitarray_set/2. The success typing is (integer(),tuple()) -> array:array(_)
+hanoidb_bloom.erl:230: Function bitarray_set/2 has no local return
+hanoidb_bloom.erl:233: The call array:get(AI::non_neg_integer(),A::tuple()) does not have an opaque term of type array:array(_) as 2nd argument
+hanoidb_bloom.erl:240: Function bitarray_get/2 has no local return
+hanoidb_bloom.erl:242: The call array:get(AI::non_neg_integer(),A::tuple()) does not have an opaque term of type array:array(_) as 2nd argument
 hanoidb_fold_worker.erl:65: Callback info about the plain_fsm behaviour is not available
 hanoidb_level.erl:44: Callback info about the plain_fsm behaviour is not available
 hanoidb_level.erl:669: Guard test hd([]) can never succeed
 hanoidb_level.erl:750: The call plain_rpc:send_reply('undefined' | pid(),'step_ok') will never return since it differs in the 1st argument from the success typing arguments: ({atom() | pid() | port() | {atom(),atom()},_},any())
-hanoidb_reader.erl:51: Type specification hanoidb_reader:open(Name::string()) -> {'ok',read_file()} | {'error',any()} is a supertype of the success typing: hanoidb_reader:open(string()) -> {'error',atom()} | {'ok',#index{file::pid() | #file_descriptor{module::atom() | tuple()},root::'none' | #node{level::'undefined' | non_neg_integer(),members::[any()]},bloom::'undefined' | {'ebloom',reference()} | {'sbloom',_},name::'undefined' | string(),config::[any()]}}
 hanoidb_reader.erl:122: Guard test is_binary(BinPage::[any()]) can never succeed
 hanoidb_reader.erl:123: The created fun has no local return
 hanoidb_reader.erl:123: Fun application will fail since Fun :: none() is not a function of arity 2
 hanoidb_reader.erl:278: The pattern <_, _, 'none', _> can never match the type <'undefined' | pid() | #file_descriptor{module::atom() | tuple()},binary(),#node{level::'undefined' | non_neg_integer(),members::<<_:64,_:_*8>> | [any()]},non_neg_integer() | {non_neg_integer(),non_neg_integer()}>
 hanoidb_reader.erl:312: The variable BinDict can never match since previous clauses completely covered the type [any()]
 hanoidb_util.erl:148: The pattern 'hanoi2' can never match the type 'bisect'
-hanoidb_util.erl:163: The pattern {'bisect', Binary} can never match the type {'partial',[[[any()] | {_,_}] | {binary(),'deleted' | binary() | {_,_}}],maybe_improper_list(binary() | maybe_improper_list(any(),binary() | []) | byte(),binary() | [])}
+hanoidb_util.erl:163: The pattern {'bisect', Binary} can never match the type {'partial',[[[any()] | {binary(),'deleted' | binary() | {'deleted' | binary() | non_neg_integer(),'infinity' | integer()}}] | {binary(),'deleted' | binary() | {'deleted' | binary() | non_neg_integer(),'infinity' | integer()}}],maybe_improper_list(binary() | maybe_improper_list(any(),binary() | []) | byte(),binary() | [])}
 hanoidb_util.erl:209: Type specification hanoidb_util:crc_encapsulate(iolist()) -> iolist() is a supertype of the success typing: hanoidb_util:crc_encapsulate(nonempty_maybe_improper_list(binary() | maybe_improper_list(any(),binary() | []) | byte(),binary() | [])) -> [<<_:64>> | nonempty_maybe_improper_list(binary() | maybe_improper_list(any(),binary() | []) | byte(),binary() | []) | 255,...]
-hanoidb_util.erl:263: Type specification hanoidb_util:decode_kv_data(binary()) -> kventry() is a supertype of the success typing: hanoidb_util:decode_kv_data(<<_:8,_:_*8>>) -> [[[any()] | {_,_}] | {binary(),'deleted' | binary() | {_,_}}] | {binary(),'deleted' | binary() | {'deleted' | binary() | non_neg_integer(),non_neg_integer()}}
 vbisect.erl:43: Invalid type specification for function vbisect:from_gb_tree/1. The success typing is ({integer(),'nil' | {binary(),binary(),'nil' | {binary(),binary(),'nil' | {_,_,_,_},'nil' | {_,_,_,_}},'nil' | {binary(),binary(),'nil' | {_,_,_,_},'nil' | {_,_,_,_}}}}) -> binary()
 vbisect.erl:80: Type specification vbisect:find(Key::key(),Dict::bindict()) -> {'ok',value()} | 'error' is a supertype of the success typing: vbisect:find(binary(),<<_:64,_:_*8>>) -> 'error' | {'ok',binary()}
 vbisect.erl:127: Type specification vbisect:find_geq(Key::binary(),Binary::binary()) -> 'none' | {'ok',Key::key(),Value::value()} is a supertype of the success typing: vbisect:find_geq(binary(),<<_:64,_:_*8>>) -> 'none' | {'ok',binary(),binary()}
 vbisect.erl:211: The call vbisect:from_gb_tree(gb_trees:tree(_,_)) contains an opaque term as 1st argument when a structured term of type {integer(),'nil' | {binary(),binary(),'nil' | {binary(),binary(),'nil' | {_,_,_,_},'nil' | {_,_,_,_}},'nil' | {binary(),binary(),'nil' | {_,_,_,_},'nil' | {_,_,_,_}}}} is expected
- done in 0m5.10s
+ done in 0m5.88s
 done (warnings were emitted)
