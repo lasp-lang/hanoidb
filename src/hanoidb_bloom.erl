@@ -226,7 +226,7 @@ as_array(BM) ->
 %%%========== Bitarray representation - suitable for sparse arrays ==========
 %% bitarray_new(N) -> array:new((N-1) div ?W + 1, {default, 0}).
 
--spec bitarray_set( non_neg_integer(), array() ) -> array().
+-spec bitarray_set( non_neg_integer(), hanoi_array() ) -> hanoi_array().
 bitarray_set(I, A1) ->
     A = as_array(A1),
     AI = I div ?W,
@@ -236,7 +236,7 @@ bitarray_set(I, A1) ->
        true -> array:set(AI, V1, A)
     end.
 
--spec bitarray_get( non_neg_integer(), array() ) -> boolean().
+-spec bitarray_get( non_neg_integer(), hanoi_array() ) -> boolean().
 bitarray_get(I, A) ->
     AI = I div ?W,
     V = array:get(AI, A),
