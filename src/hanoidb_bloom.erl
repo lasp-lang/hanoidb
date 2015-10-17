@@ -25,6 +25,8 @@
 -module(hanoidb_bloom).
 -author("Paulo Sergio Almeida <psa@di.uminho.pt>").
 
+-include("include/hanoidb.hrl").
+
 -export([sbf/1, sbf/2, sbf/3, sbf/4,
          bloom/1, bloom/2,
          member/2, add/2,
@@ -41,8 +43,7 @@
 
 -define(W, 27).
 
--type array() :: array:array().
--type bitmask() :: array() | any().
+-type bitmask() :: hanoi_array() | any().
 
 -record(bloom, {
     e     :: float(),              % error probability

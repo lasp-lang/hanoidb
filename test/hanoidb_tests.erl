@@ -41,12 +41,6 @@
 -behaviour(proper_statem).
 -endif.
 
--ifdef(namespaced_types).
--type hanoi_dict() :: dict:dict().
--else.
--type hanoi_dict() :: dict().
--endif.
-
 -compile(export_all).
 
 -export([command/1, initial_state/0,

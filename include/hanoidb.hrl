@@ -22,6 +22,13 @@
 %%
 %% ----------------------------------------------------------------------------
 
+-ifdef(namespaced_types).
+-type hanoi_dict() :: dict:dict().
+-type hanoi_array() :: array:array().
+-else.
+-type hanoi_dict() :: dict().
+-type hanoi_array() :: array().
+-endif.
 
 %%
 %% When doing "async fold", it does "sync fold" in chunks
